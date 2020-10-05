@@ -11,7 +11,7 @@ It feels as if we had been learning fairly straight forward games and then playe
 
 Every new game learned would be slightly more complex than the last, but in a steady progression. We'd first learn quarters, then horseshoes, then darts, then billiards.
 
-This current assignment feels like we've gone from billiards to American football at us. And again, in the same amount of time to learn the rules and complexities as the previous, far simpler games.
+This current assignment feels like we've gone from billiards to American football. And again, in the same amount of time to learn the rules and complexities as the previous, far simpler games.
 
 Again, it might just be me, but I can't learn and play football in the same brief amount of time it takes to learn and play horseshoes. 
 
