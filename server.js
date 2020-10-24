@@ -1,50 +1,45 @@
-// ==============================================================================
-// DEPENDENCIES
-// Series of npm packages that we will use to give our server useful functionality
-// ==============================================================================
-
+//Global Variables Dependencies
 const express = require("express");
+const path = require("path");
+const fs = require("fs");
+const theNotes = require("./db/db.json")
 
-// ==============================================================================
-// EXPRESS CONFIGURATION
-// This sets up the basic properties for our express server
-// ==============================================================================
-
-// Tells node that we are creating an "express" server
+//Express
 const app = express();
 
-// Sets an initial port. We"ll use this later in our listener
+//Port
 const PORT = process.env.PORT || 8080;
 
-// Sets up the Express app to handle data parsing
+//More Express Setup
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-// ================================================================================
-// ROUTER
-// The below points our server to a series of "route" files.
-// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
-// ================================================================================
-
+//Routes
 require("./routes/notesRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "public/view.html"));
+// app.get("/", function (req, res) {
+//   res.sendFile(path.join(__dirname, "public/index.html"));
+// });
+
+app.get("/notes", function (req, res) {
+  res.sendFile(path.join(__dirname, "public/notes.html"));
 });
 
-app.get("/add", function (req, res) {
-  res.sendFile(path.join(__dirname, "public/add.html"));
+//API Route
+app.get("/api/notes", function (req, res) {
+  return res.json(theNotes);
 });
 
-// Displays all characters
-app.get("/api/characters", function (req, res) {
-  return res.json(characters);
+app.post("/api/notes", function (req, res) {
+  let newNote = req.body;
 });
 
-// Displays a single character, or returns false
+// LEFT OFF HERE!!!!!!
+
+//
 app.get("/api/characters/:character", function (req, res) {
   var chosen = req.params.character;
 
@@ -73,11 +68,7 @@ app.post("/api/characters", function (req, res) {
   res.json(newCharacter);
 });
 
-// ==============================================
-// LISTENER
-// The below code effectively "starts" our server
-// ==============================================
-
+//Port Listener
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
 });
